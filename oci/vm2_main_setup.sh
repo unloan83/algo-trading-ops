@@ -1,21 +1,30 @@
 #!/bin/bash
-# OCI Always Free VM2 (Ampere A1 Flex 1 OCPU / 6 GB RAM) Provisioning Script
-
 set -euo pipefail
 
-echo "Installing core dependencies on VM2..."
+CORE=/home/user/projects/algo-trading-core
+OPS=/home/user/projects/algo-trading-ops
+
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv postgresql postgresql-contrib git systemd curl
+sudo apt-get install -y python3-pip python3-venv git systemd curl
 
-echo "Setting up local PostgreSQL database for trade journal..."
-sudo -u postgres psql -c "CREATE DATABASE trading_db;" || true
-sudo -u postgres psql -c "CREATE USER trader WITH PASSWORD 'local_secure_pass';" || true
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE trading_db TO trader;" || true
+cd "$CORE"
+python3 -m venv .venv
+.venv/bin/pip install --upgrade pip
+.venv/bin/pip install -e ".[dev]"
 
-echo "Configuring systemd service timers..."
-sudo cp systemd/*.service /etc/systemd/system/
-sudo cp systemd/*.timer /etc/systemd/system/
+sudo cp "$OPS"/systemd/*.service /etc/systemd/system/
+sudo cp "$OPS"/systemd/*.timer /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now eod_screener.timer watchdog.timer
 
-echo "VM2 setup complete."
+# The old localhost:8080 watchdog is intentionally NOT enabled:
+# there is no health server in the current paper build, and live orders are disabled.
+sudo systemctl disable --now watchdog.timer 2>/dev/null || true
+
+sudo systemctl enable --now \
+  preflight.timer \
+  intraday_scan.timer \
+  paper_monitor.timer \
+  eod_screener.timer
+
+echo "Paper-trading services installed."
+systemctl list-timers --all | grep -E 'preflight|intraday_scan|paper_monitor|eod_screener' || true

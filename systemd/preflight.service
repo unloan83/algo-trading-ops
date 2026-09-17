@@ -1,5 +1,5 @@
 [Unit]
-Description=Paper Trading - EOD Screener
+Description=Paper Trading - Morning Preflight
 After=network-online.target
 Wants=network-online.target
 
@@ -8,6 +8,6 @@ Type=oneshot
 User=user
 WorkingDirectory=/home/user/projects/algo-trading-core
 EnvironmentFile=/home/user/projects/algo-trading-core/.env
-ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/scripts/eod_screener.py
+ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/scripts/preflight.py
 StandardOutput=journal
 StandardError=journal

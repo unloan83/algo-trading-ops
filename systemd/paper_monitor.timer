@@ -1,0 +1,9 @@
+[Unit]
+Description=Paper Trading - 1 minute stop/target monitor
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 09..15:00/1:00 Asia/Kolkata
+Persistent=true
+
+[Install]
+WantedBy=timers.target
