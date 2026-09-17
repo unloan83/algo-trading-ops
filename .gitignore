@@ -1,0 +1,9 @@
+# Secrets and server credentials
+.env
+*.env
+*.key
+*.pem
+
+# Python bytecode and caches
+__pycache__/
+*.pyc

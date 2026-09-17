@@ -1,0 +1,15 @@
+# OCI Security & Cost Tripwire Setup Guide
+
+## 1. OCI Always Free Cost Alert Tripwire
+- Log into OCI Console -> Billing & Cost Management -> Budgets.
+- Create a Budget with Target: **Tenant**.
+- Set Monthly Threshold Amount: **$0.01**.
+- Add Alert Rule: Send email / SMS immediately at **100% of threshold ($0.01)**.
+- This ensures any accidental paid SKU usage is caught on day 1.
+
+## 2. VCN Firewall & Static IP Whitelisting
+- VM2 static public IP must be whitelisted in broker developer portal (Upstox / Fyers / Dhan).
+- Security List Ingress Rules:
+  - Allow Port 22 (SSH) **ONLY** from your local admin IP.
+  - Allow Port 443 (HTTPS) for Telegram Webhook ingress.
+  - Reject all other incoming ports.

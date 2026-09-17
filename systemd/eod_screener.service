@@ -1,0 +1,14 @@
+[Unit]
+Description=Automated Trading System - EOD Screener Service
+After=network.target
+
+[Service]
+Type=oneshot
+User=user
+WorkingDirectory=/home/user/projects/algo-trading-core
+ExecStart=/usr/bin/python3 /home/user/projects/algo-trading-core/scripts/eod_screener.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
