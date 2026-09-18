@@ -1,0 +1,9 @@
+[Unit]
+Description=Automated Trading System - Pre-Market Morning Health Report Timer (08:45 IST)
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 08:45:00 Asia/Kolkata
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Automated Trading System - Independent Algo Models Health Agent
+After=network.target
+
+[Service]
+Type=oneshot
+User=user
+WorkingDirectory=/home/user/projects/algo-trading-core
+ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/scripts/algo_health_agent.py --mode check
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
