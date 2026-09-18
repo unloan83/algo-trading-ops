@@ -1,9 +1,10 @@
 [Unit]
-Description=Automated Trading System - Post-Market EOD Report Timer (16:00 IST)
+Description=Algo Trading - End Of Day Health Report Timer
 
 [Timer]
-OnCalendar=Mon..Fri *-*-* 16:00:00 Asia/Kolkata
+OnCalendar=Mon..Fri *-*-* 16:10:00 Asia/Kolkata
 Persistent=true
+Unit=algo_health_agent_eod.service
 
 [Install]
 WantedBy=timers.target

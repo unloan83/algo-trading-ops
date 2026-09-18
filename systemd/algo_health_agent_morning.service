@@ -1,0 +1,13 @@
+[Unit]
+Description=Algo Trading - Morning Health Report
+After=network-online.target preflight.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=user
+WorkingDirectory=/home/user/projects/algo-trading-core
+EnvironmentFile=/home/user/projects/algo-trading-core/.env
+ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/scripts/algo_health_agent.py --mode morning
+StandardOutput=journal
+StandardError=journal

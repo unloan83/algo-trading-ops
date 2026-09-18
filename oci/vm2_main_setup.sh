@@ -24,7 +24,11 @@ sudo systemctl enable --now \
   preflight.timer \
   intraday_scan.timer \
   paper_monitor.timer \
-  eod_screener.timer
+  eod_screener.timer \
+  algo_health_agent_morning.timer \
+  algo_health_agent_check.timer \
+  algo_health_agent_eod.timer
 
 echo "Paper-trading services installed."
-systemctl list-timers --all | grep -E 'preflight|intraday_scan|paper_monitor|eod_screener' || true
+systemctl list-timers --all | grep -E \
+'preflight|intraday_scan|paper_monitor|eod_screener|algo_health_agent' || true

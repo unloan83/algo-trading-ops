@@ -1,0 +1,10 @@
+[Unit]
+Description=Algo Trading - Health Check Every 30 Minutes
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 09..15:00/30:00 Asia/Kolkata
+Persistent=false
+Unit=algo_health_agent.service
+
+[Install]
+WantedBy=timers.target
