@@ -11,5 +11,4 @@
 - VM2 static public IP must be whitelisted in broker developer portal (Upstox / Fyers / Dhan).
 - Security List Ingress Rules:
   - Allow Port 22 (SSH) **ONLY** from your local admin IP.
-  - Allow Port 443 (HTTPS) for Telegram Webhook ingress.
-  - Reject all other incoming ports.
+  - Reject all other incoming ports (Telegram uses long-polling via outbound HTTPS, no inbound port 443 required).
