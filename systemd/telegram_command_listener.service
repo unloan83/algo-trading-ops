@@ -1,0 +1,18 @@
+[Unit]
+Description=Algo Trading - Telegram Command and Approval Listener
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/user/projects/algo-trading-core
+EnvironmentFile=/home/user/projects/algo-trading-core/.env
+ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/telegram_bot/command_listener.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

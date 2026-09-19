@@ -21,6 +21,7 @@ sudo systemctl daemon-reload
 sudo systemctl disable --now watchdog.timer 2>/dev/null || true
 
 sudo systemctl enable --now \
+  telegram_command_listener.service \
   preflight.timer \
   intraday_scan.timer \
   paper_monitor.timer \
@@ -30,5 +31,6 @@ sudo systemctl enable --now \
   algo_health_agent_eod.timer
 
 echo "Paper-trading services installed."
+systemctl status telegram_command_listener.service --no-pager
 systemctl list-timers --all | grep -E \
 'preflight|intraday_scan|paper_monitor|eod_screener|algo_health_agent' || true

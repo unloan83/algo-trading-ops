@@ -12,3 +12,4 @@
 - Security List Ingress Rules:
   - Allow Port 22 (SSH) **ONLY** from your local admin IP.
   - Reject all other incoming ports (Telegram uses long-polling via outbound HTTPS, no inbound port 443 required).
+  - `telegram_command_listener.service` is the sole Telegram `getUpdates` consumer; approval callbacks are routed through the local SQLite inbox so scheduled scanners never compete for the bot offset.
