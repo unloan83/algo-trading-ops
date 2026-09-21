@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-CORE=/home/user/projects/algo-trading-core
-OPS=/home/user/projects/algo-trading-ops
+CORE=/home/ubuntu/projects/algo-trading-core
+OPS=/home/ubuntu/projects/algo-trading-ops
 
 sudo apt-get update
 sudo apt-get install -y python3-pip python3-venv git systemd curl

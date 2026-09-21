@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-User=user
+User=ubuntu
 ExecStart=/bin/bash -c "curl -s -f http://localhost:8080/health || echo 'VM2 Core Heartbeat Warning' | mail -s 'Trading Watchdog Alert' user@localhost"
 StandardOutput=journal
 
