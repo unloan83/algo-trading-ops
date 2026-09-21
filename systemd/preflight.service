@@ -5,6 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 User=ubuntu
 WorkingDirectory=/home/ubuntu/projects/algo-trading-core
 EnvironmentFile=/home/ubuntu/projects/algo-trading-core/.env
