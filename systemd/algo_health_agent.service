@@ -2,12 +2,13 @@
 Description=Algo Trading - Independent Health Check
 After=network-online.target
 Wants=network-online.target
+ConditionPathExists=/etc/algo-trading-primary-runtime
 
 [Service]
 Type=oneshot
-User=user
-WorkingDirectory=/home/user/projects/algo-trading-core
-EnvironmentFile=/home/user/projects/algo-trading-core/.env
-ExecStart=/home/user/projects/algo-trading-core/.venv/bin/python /home/user/projects/algo-trading-core/scripts/algo_health_agent.py --mode check
+User=ubuntu
+WorkingDirectory=/home/ubuntu/projects/algo-trading-core
+EnvironmentFile=/home/ubuntu/projects/algo-trading-core/.env
+ExecStart=/home/ubuntu/projects/algo-trading-core/.venv/bin/python /home/ubuntu/projects/algo-trading-core/scripts/algo_health_agent.py --mode check
 StandardOutput=journal
 StandardError=journal
