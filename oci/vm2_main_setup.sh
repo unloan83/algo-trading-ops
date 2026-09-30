@@ -12,6 +12,7 @@ APPROVED_UNITS=(
   intraday_scan.service
   paper_monitor.service
   preflight.service
+  shadow_labeler.service
   telegram_command_listener.service
   algo_health_agent_check.timer
   algo_health_agent_eod.timer
@@ -20,6 +21,7 @@ APPROVED_UNITS=(
   intraday_scan.timer
   paper_monitor.timer
   preflight.timer
+  shadow_labeler.timer
 )
 
 sudo apt-get update
@@ -51,9 +53,10 @@ sudo systemctl enable --now \
   eod_screener.timer \
   algo_health_agent_morning.timer \
   algo_health_agent_check.timer \
-  algo_health_agent_eod.timer
+  algo_health_agent_eod.timer \
+  shadow_labeler.timer
 
 echo "Paper-trading services installed."
 systemctl status telegram_command_listener.service --no-pager
 systemctl list-timers --all | grep -E \
-'preflight|intraday_scan|paper_monitor|eod_screener|algo_health_agent' || true
+'preflight|intraday_scan|paper_monitor|eod_screener|algo_health_agent|shadow_labeler' || true
